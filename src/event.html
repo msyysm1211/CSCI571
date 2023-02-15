@@ -4,84 +4,204 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
     <style>
       * {
         margin: 0;
         padding: 0;
       }
-      form {
-        margin: 100px;
-        height: 645px;
-        background-color: gray;
+      body {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-attachment: fixed;
+        background-image: url("./background.jpg");
       }
-
       .form-title {
         margin: 0 auto;
         text-align: center;
         color: white;
-        font-size: 40px;
+        font-size: 50px;
+        padding: 20px;
       }
-      .head-divider {
-        color: white;
-        width: 100%;
+      .form-item {
+        flex-direction: column;
+        display: flex;
+        gap: 10px;
       }
-      .inline-input {
+      .container {
+        background-color: rgb(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border-radius: 15px;
+        padding: 20px;
+        width: 42%;
+        margin: 20px auto;
+      }
+      .form-input {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 50px;
+      }
+      .two-form-item {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
       }
-      .text-input {
-        line-height: 30px;
+      .two-form-item :nth-child(1) {
+        flex-grow: 0.4;
+      }
+      .two-form-item :nth-child(2) {
+        flex-grow: 1;
+      }
+      .form-item > input,
+      .form-item > select {
+        height: 55px;
+        font-size: 18px;
+        color: white;
+        border: 1px solid white;
+        background-color: transparent;
+        border-radius: 5px;
+        text-indent: 15px;
+      }
+      .input-required:after {
+        content: "*";
+        color: red;
+      }
+      .button-icon {
+        border-radius: 7px;
+        height: 44px;
+        width: 103px;
+        color: white;
+        border: 0px;
         font-size: 16px;
       }
-      .form-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        align-items: start;
-        flex-wrap: wrap;
-        margin: 10px;
+      .search-button {
+        background-color: rgb(234, 105, 50);
+        box-shadow: 0px 5px 0px rgb(229, 79, 43);
       }
-      #location-checkbox {
+      .clear-button {
+        background-color: rgb(78, 100, 154);
+        box-shadow: 0px 5px 0px rgb(54, 68, 104);
+      }
+      .form-item label {
+        color: rgb(168, 199, 223);
+      }
+      .form-item p {
         display: inline;
+        color: white;
       }
-      input[type="text"] {
+      .form-footer {
+        margin-top: 50px;
+      }
+      .result-section {
+        width: 80%;
+        margin: 0 auto;
+      }
+      tr {
+        background-color: white;
+      }
+      table {
         width: 100%;
-        opacity: 1;
-        background-color: transparent;
-        border: 1px solid white;
+      }
+      tr > th {
+        height: 50px;
+      }
+      tr > th:nth-child(1) {
+        width: 15%;
+      }
+      tr > th:nth-child(2) {
+        width: 15%;
+      }
+      tr > th:nth-child(3) {
+        width: 40%;
+      }
+      tr > th:nth-child(4) {
+        width: 10%;
+      }
+      tr > th:nth-child(5) {
+        width: 20%;
       }
     </style>
   </head>
   <body>
-    <form action="">
-      <p class="form-title">Events Search</p>
-      <hr class="head-divider" />
-      <div class="form-body">
-        <div class="input-item">
-          <label for="">Keyword</label>
-          <br /><input class="text-input" type="text" />
-        </div>
-        <div class="inline-input">
-          <div class="input-item">
-            <label for="">Distance(miles)</label>
-            <br /><input class="text-input" type="text" />
+    <div class="container">
+      <div class="form-title">Events Search</div>
+      <hr />
+      <form action="">
+        <div class="form-input">
+          <div class="form-item">
+            <label class="input-required">Keyword</label>
+            <input type="text" name="" id="keyword" required />
           </div>
-          <div class="input-item">
-            <label for="">Category</label>
-            <br /><input class="text-input" type="text" />
+
+          <div class="two-form-item">
+            <div class="form-item">
+              <label>Distance(miles)</label>
+              <input type="number" name="" id="distance" value="10" />
+            </div>
+            <div class="form-item">
+              <label class="input-required" required>Category</label>
+              <select name="Category" id="category">
+                <option value="Default">Default</option>
+                <option value="Music">Music</option>
+                <option value="Sports">Sports</option>
+                <option value="Arts">Arts</option>
+                <option value="Theatre">Theatre</option>
+                <option value="Film">Film</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <div>
+              <label class="input-required" required>Location</label>
+              <input
+                type="checkbox"
+                name=""
+                id="check-box"
+                onclick="checkboxOnclick(this)"
+              />
+              <p>Auto-Detect Location</p>
+            </div>
+
+            <input type="text" name="" id="location-input" />
           </div>
         </div>
-        <div class="input-item">
-          <label for="">Location</label>
-          <input type="checkbox" name="" id="location-checkbox" />
-          <br /><input class="text-input" type="text" />
+        <div class="form-footer">
+          <button
+            class="button-icon search-button"
+            type="button"
+            onclick="submitForm()"
+          >
+            SEARCH
+          </button>
+          <button
+            class="button-icon clear-button"
+            type="button"
+            onclick="clearForm()"
+          >
+            CLEAR
+          </button>
         </div>
-        <input type="submit" value="submit" />
-      </div>
-    </form>
-    <input type="text" />
+      </form>
+    </div>
+    <div class="result-section" id="result">
+      <!-- <table id="result_table">
+        <tr>
+          <th>Date</th>
+          <th>Icon</th>
+          <th onclick="sort_table('Event')">Event</th>
+          <th onclick="sort_table('Genre')">Genre</th>
+          <th onclick="sort_table('Venue')">Venue</th>
+        </tr>
+      </table> -->
+    </div>
   </body>
+  <script src="event.js"></script>
 </html>
