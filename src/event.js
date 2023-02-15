@@ -57,11 +57,6 @@ function showNorecords() {
     lineHeight: "40px",
     fontSize: "18px",
   });
-  // table.style.backgroundColor = "white";
-  // table.style.textAlign = "center";
-  // table.style.color = "red";
-  // table.style.lineHeight = "40px";
-  // table.style.fontSize = "18px";
 }
 function create_table() {
   title = ["Date", "Icon", "Event", "Genre", "Venue"];
@@ -75,9 +70,6 @@ function create_table() {
     th.onclick = () => sort_table(sort[i]);
     th_list[i] = th;
   }
-  // th_list[2].onclick = sort_table("Event");
-  // th_list[3].onclick = sort_table("Genre");
-  // th_list[4].onclick = sort_table("Venue");
 
   for (let i = 0; i < 5; i++) {
     th_list[i].innerText = title[i];
@@ -86,11 +78,6 @@ function create_table() {
   table.appendChild(tr);
   return table;
 }
-
-function test(a) {
-  console.log(a);
-}
-
 function showData(results) {
   document.querySelector("#result").innerHTML = "";
   table = create_table();
@@ -115,6 +102,8 @@ function showData(results) {
     img.src = result.images[0].url != null ? result.images[0].url : "";
     event.innerHTML = result.name != null ? result.name : "";
     event.className = "Event";
+    event.id = result.id;
+    event.onclick = () => get_event_details(event);
     genre.innerHTML =
       result.classifications[0].segment.name != null
         ? result.classifications[0].segment.name
@@ -147,6 +136,14 @@ function showData(results) {
     table.appendChild(tr);
   }
 }
+
+function create_img(url) {
+  const img = document.createElement("img");
+  img.src = url;
+  return img
+}
+
+
 function parseParam(json) {
   return Object.keys(json)
     .map((v) => {
@@ -199,4 +196,9 @@ clearForm = () => {
   document.querySelector("#check-box").onclick();
   document.querySelector("#category").value = "Default";
   document.querySelector("#result").innerHTML = "";
+};
+
+get_event_details = (target) => {
+  console.log(target);
+  console.log(target.id);
 };
