@@ -126,6 +126,60 @@
       tr > th:nth-child(5) {
         width: 20%;
       }
+      button {
+        width: 200px;
+        height: 50px;
+      }
+      .detail {
+        width: 70%;
+        background-color: rgb(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 15px;
+        display: none;
+      }
+      .detail-body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .detail-title {
+        text-align: center;
+        font-size: 40px;
+        color: white;
+        line-height: 70px;
+      }
+      .detail-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 200px;
+        margin-left: 20px;
+      }
+      .detail-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .detail-item-title {
+        color: rgb(186, 253, 234);
+        font-size: 24px;
+      }
+      .detail-item-body {
+        color: white;
+        padding: 5px 0px;
+      }
+      #detail-img {
+        width: 400px;
+        height: 300px;
+      }
+      a {
+        padding-top: 5px;
+        text-decoration: none;
+        color: rgb(126, 202, 251);
+      }
     </style>
   </head>
   <body>
@@ -192,6 +246,43 @@
       </form>
     </div>
     <div class="result-section" id="result"></div>
+    <div class="detail" id="detail">
+      <div class="detail-title">concert</div>
+      <div class="detail-body">
+        <div class="detail-info">
+          <div class="detail-item">
+            <div class="detail-item-title">Date</div>
+            <div class="detail-item-body">2023.04</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-item-title">Artist/Team</div>
+            <a href="1.png">123</a>
+          </div>
+          <div class="detail-item">
+            <div class="detail-item-title">Venue</div>
+            <div class="detail-item-body">2023.04</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-item-title">Genres</div>
+            <div class="detail-item-body">2023.04</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-item-title">Price Ranges</div>
+            <div class="detail-item-body">2023.04</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-item-title">Ticket Status</div>
+            <div class="detail-item-body">2023.04</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-item-title">Buy Ticket At:</div>
+            <a href="1.png">Ticketmaster</a>
+          </div>
+        </div>
+        <img src="1.png" alt="" id="detail-img" />
+      </div>
+    </div>
+    <button onclick="display()">add</button>
   </body>
   <script src="event.js"></script>
 </html>

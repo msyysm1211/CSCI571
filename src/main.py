@@ -9,15 +9,13 @@ app = Flask(__name__)
 CORS(app)
 
 
+apikey = '3YzBjvOZXqXDOJN2S3HAvvBiVNhea9P1'
+
+
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
     return 'Hello World!'
-
-
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-    return '123'
 
 
 def get_location_by_ip():
@@ -48,10 +46,22 @@ def search():
     return jsonify(query_results)
 
 
+@app.route('/detail')
+def detail():
+    request.method == 'GET'
+    args = request.args
+    id = args.get('id')
+    detail_url = f'https://app.ticketmaster.com/discovery/v2/events/{id}?apikey={apikey}'
+    r = requests.get(detail_url)
+    r.encoding = 'utf-8'
+    query_results = json.loads(r.text)
+    return jsonify(query_results)
+
+
 def get_params(args):
     param = {}
     type = args.get('type')
-    param['apikey'] = '3YzBjvOZXqXDOJN2S3HAvvBiVNhea9P1'
+    param['apikey'] = apikey
     keyword = args.get('keyword')
     param['keyword'] = '+'.join(keyword)
 
