@@ -58,6 +58,19 @@ def detail():
     return jsonify(query_results)
 
 
+@app.route('/venue')
+def get_venue():
+    request.method == 'GET'
+    args = request.args
+    keyword = args.get('keyword')
+    detail_url = f'https://app.ticketmaster.com/discovery/v2/venues?apikey={apikey}&keyword={keyword}'
+    r = requests.get(detail_url)
+    r.encoding = 'utf-8'
+    query_results = json.loads(r.text)
+    return jsonify(query_results)
+# CU+Events+Center
+# https://app.ticketmaster.com/discovery/v2/venues?apikey=3YzBjvOZXqXDOJN2S3HAvvBiVNhea9P1&keyword=CU+Events+Center
+
 def get_params(args):
     param = {}
     type = args.get('type')

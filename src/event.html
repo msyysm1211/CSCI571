@@ -30,7 +30,7 @@
         display: flex;
         gap: 10px;
       }
-      .container {
+      .form {
         background-color: rgb(255, 255, 255, 0.2);
         backdrop-filter: blur(5px);
         border-radius: 15px;
@@ -108,9 +108,7 @@
       table {
         width: 100%;
       }
-      tr > th {
-        height: 50px;
-      }
+
       tr > th:nth-child(1) {
         width: 15%;
       }
@@ -135,7 +133,7 @@
         background-color: rgb(255, 255, 255, 0.2);
         backdrop-filter: blur(20px);
         margin: 0 auto;
-        padding: 20px;
+        padding: 30px;
         border-radius: 15px;
         display: none;
       }
@@ -143,7 +141,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
       }
       .detail-title {
         text-align: center;
@@ -172,117 +170,242 @@
         padding: 5px 0px;
       }
       #detail-img {
-        width: 400px;
-        height: 300px;
+        margin: 40px auto;
+        max-height: 500px;
+        max-width: 500px;
       }
-      a {
-        padding-top: 5px;
+      .detail-item > a {
+        margin-top: 5px;
         text-decoration: none;
         color: rgb(126, 202, 251);
+      }
+      .venue-detail-body a {
+        text-decoration: none;
+        color: rgb(70, 144, 174);
+      }
+      .detail-item > a:hover {
+        color: rgb(108, 117, 176);
+      }
+      .status {
+        background-color: red;
+        border-radius: 7px;
+        width: fit-content;
+        padding: 5px;
+      }
+
+      .event:hover {
+        color: rgb(144, 138, 186);
+        cursor: pointer;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .show-venue {
+        color: white;
+        font-size: 30px;
+        display: none;
+        margin-bottom: 30px;
+      }
+      .arrow {
+        height: 20px;
+        width: 20px;
+        border-bottom: 1px solid white;
+        border-right: 1px solid white;
+        transform: rotate(45deg);
+        margin: 0 auto;
+        cursor: pointer;
+        padding: 10px;
+      }
+      .venue-detail {
+        margin-top: 50px;
+        background-color: white;
+        width: 70%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 15px;
+        margin-bottom: 100px;
+        padding: 30px;
+        box-shadow: 0 0 0 1px black, 0 0 0 15px white;
+      }
+      .venue-detail-body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+      }
+      .venue-detail-title {
+        font-size: 33px;
+        padding: 0px 20px;
+        border-bottom: 1px solid black;
+        margin-bottom: 50px;
+      }
+      .venue-left,
+      .venue-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 45px;
+      }
+      .venue-address {
+        display: flex;
+        flex-direction: row;
+      }
+      .venue-address > :nth-child(1) {
+        font-weight: 900;
+        margin-right: 10px;
+      }
+      th > {
+        height: 20px;
+      }
+
+      #table_title {
+        position: relative;
+        box-shadow: 0px 1px 15px black;
+        z-index: 100;
+        height: 45px;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="form-title">Events Search</div>
-      <hr />
-      <form action="">
-        <div class="form-input">
-          <div class="form-item">
-            <label class="input-required">Keyword</label>
-            <input type="text" name="" id="keyword" required />
-          </div>
-
-          <div class="two-form-item">
+    <main>
+      <div class="form">
+        <div class="form-title">Events Search</div>
+        <hr />
+        <form action="">
+          <div class="form-input">
             <div class="form-item">
-              <label>Distance(miles)</label>
-              <input type="number" name="" id="distance" value="10" />
+              <label class="input-required">Keyword</label>
+              <input type="text" name="" id="keyword" required />
             </div>
+
+            <div class="two-form-item">
+              <div class="form-item">
+                <label>Distance(miles)</label>
+                <input type="number" name="" id="distance" value="10" />
+              </div>
+              <div class="form-item">
+                <label class="input-required" required>Category</label>
+                <select name="Category" id="category">
+                  <option value="Default">Default</option>
+                  <option value="Music">Music</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Arts">Arts</option>
+                  <option value="Theatre">Theatre</option>
+                  <option value="Film">Film</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+              </div>
+            </div>
+
             <div class="form-item">
-              <label class="input-required" required>Category</label>
-              <select name="Category" id="category">
-                <option value="Default">Default</option>
-                <option value="Music">Music</option>
-                <option value="Sports">Sports</option>
-                <option value="Arts">Arts</option>
-                <option value="Theatre">Theatre</option>
-                <option value="Film">Film</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-              </select>
+              <div>
+                <label class="input-required" required>Location</label>
+                <input
+                  type="checkbox"
+                  name=""
+                  id="check-box"
+                  onclick="checkboxOnclick(this)"
+                />
+                <p>Auto-Detect Location</p>
+              </div>
+
+              <input type="text" name="" id="location-input" />
             </div>
           </div>
-
-          <div class="form-item">
-            <div>
-              <label class="input-required" required>Location</label>
-              <input
-                type="checkbox"
-                name=""
-                id="check-box"
-                onclick="checkboxOnclick(this)"
-              />
-              <p>Auto-Detect Location</p>
-            </div>
-
-            <input type="text" name="" id="location-input" />
+          <div class="form-footer">
+            <button
+              class="button-icon search-button"
+              type="button"
+              onclick="submitForm()"
+            >
+              SEARCH
+            </button>
+            <button
+              class="button-icon clear-button"
+              type="button"
+              onclick="clearForm()"
+            >
+              CLEAR
+            </button>
           </div>
-        </div>
-        <div class="form-footer">
-          <button
-            class="button-icon search-button"
-            type="button"
-            onclick="submitForm()"
-          >
-            SEARCH
-          </button>
-          <button
-            class="button-icon clear-button"
-            type="button"
-            onclick="clearForm()"
-          >
-            CLEAR
-          </button>
-        </div>
-      </form>
-    </div>
-    <div class="result-section" id="result"></div>
-    <div class="detail" id="detail">
-      <div class="detail-title">concert</div>
-      <div class="detail-body">
-        <div class="detail-info">
-          <div class="detail-item">
-            <div class="detail-item-title">Date</div>
-            <div class="detail-item-body">2023.04</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-item-title">Artist/Team</div>
-            <a href="1.png">123</a>
-          </div>
-          <div class="detail-item">
-            <div class="detail-item-title">Venue</div>
-            <div class="detail-item-body">2023.04</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-item-title">Genres</div>
-            <div class="detail-item-body">2023.04</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-item-title">Price Ranges</div>
-            <div class="detail-item-body">2023.04</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-item-title">Ticket Status</div>
-            <div class="detail-item-body">2023.04</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-item-title">Buy Ticket At:</div>
-            <a href="1.png">Ticketmaster</a>
-          </div>
-        </div>
-        <img src="1.png" alt="" id="detail-img" />
+        </form>
       </div>
-    </div>
-    <button onclick="display()">add</button>
+      <div class="result-section" id="result"></div>
+      <div class="detail" id="detail">
+        <div class="detail-title">concert</div>
+        <div class="detail-body">
+          <div class="detail-info">
+            <div class="detail-item" id="date">
+              <div class="detail-item-title">Date</div>
+              <div class="detail-item-body">2023.04</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-item-title">Artist/Team</div>
+              <a href="1.png" target="”_blank”" class="detail-item-body">123</a>
+            </div>
+            <div class="detail-item">
+              <div class="detail-item-title">Venue</div>
+              <div class="detail-item-body" id="venue_info">2023.04</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-item-title">Genres</div>
+              <div class="detail-item-body">2023.04</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-item-title">Price Ranges</div>
+              <div class="detail-item-body">2023.04</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-item-title">Ticket Status</div>
+              <div class="detail-item-body status">2023.04</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-item-title">Buy Ticket At:</div>
+              <a href="1.png" target="”_blank”" class="detail-item-body"
+                >Ticketmaster</a
+              >
+            </div>
+          </div>
+          <img src="1.png" alt="" id="detail-img" />
+        </div>
+      </div>
+      <div class="show-venue">
+        <div class="venue">Show Venue Details</div>
+        <div class="arrow" onclick="show_venue()"></div>
+      </div>
+      <div class="venue-detail">
+        <div class="venue-detail-title">Walt Disney Concert Hall</div>
+        <div class="venue-detail-body">
+          <div class="venue-left">
+            <div class="venue-address">
+              <p class="venue-address-title">Address:</p>
+              <p class="venue-address-body">
+                <span id="street">111 South Grand Avenue</span>
+                <br />
+                <span id="city">Los Angeles,</span>
+                <span id="state">CA</span>
+                <br />
+                <span id="postcalCode">90012</span>
+              </p>
+            </div>
+            <a href="" target="”_blank”" id="map">Open in Google Maps</a>
+          </div>
+          <hr />
+          <div class="venue-right">
+            <a href="" target="”_blank”" id="more-info"
+              >More events at this venue</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
   <script src="event.js"></script>
 </html>
